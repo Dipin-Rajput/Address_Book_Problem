@@ -52,7 +52,13 @@ class AddressBook:
 
     #  Edit Contact Details from Address Book
 
-    def edit_contact_details(self, fullname):
+    def edit_contact_details(self):
+
+        print("\n-------------------------- Please Enter your full name to edit your details --------------------------\n")
+
+        fname = input("Enter your first name: ")
+        lname = input("Enter your last name: ")
+        fullname = (fname + " " + lname).title()
 
         for contact in self.addressbook:
 
@@ -120,7 +126,13 @@ class AddressBook:
 
     # Delete Contact Details from Address Book
 
-    def delete_contact_details(self, fullname):
+    def delete_contact_details(self):
+
+        print("\n------------------------- Please Enter your full name to delete your details -------------------------\n")
+
+        fname = input("Enter your first name: ")
+        lname = input("Enter your last name: ")
+        fullname = (fname + " " + lname).title()
 
         counter = 0
 
@@ -139,9 +151,50 @@ class AddressBook:
 
 # Main
 
-contacts = AddressBook("suresh", "sharma", "#47 new zone, garden street", "chandigarh", "punjab", 14587, 123456789, "suresh123@gmail.com")
-contacts.add_contact_details()
-contacts.edit_contact_details("Suresh Sharma")
-contacts.delete_contact_details("Suresh Sharma")
+# UC5
 
-print(contacts.addressbook)
+#  Add Multiple Person To Address Book
+
+def main():
+
+    while True:
+
+        print("\n------------------------- Enter 1 to add contacts -------------------------")
+        print("------------------------- Enter 2 to edit contacts -------------------------")
+        print("------------------------- Enter 3 to delete contacts -------------------------")
+        print("------------------------- Press Enter to exit -------------------------\n")
+
+        choice = input("Enter you choice: ")
+
+        try:
+            if(choice == "1"):
+
+                print("\n------------------------- Enter your Details ------------------------\n")
+
+                fname = input("Enter your first name: ")
+                lname = input("Enter your last name: ")
+                address = input("Enter your address: ")
+                city = input("Enter your city: ")
+                state = input("Enter your state: ")
+                zip = int(input("Enter your zip: "))
+                phone = int(input("Enter your phone number: "))
+                email = input("Enter your email: ")
+
+                contacts = AddressBook(fname, lname, address, city, state, zip, phone, email)
+                contacts.add_contact_details()
+
+            elif(choice == "2"):
+
+                contacts.edit_contact_details()
+
+            elif(choice == "3"):
+
+                contacts.delete_contact_details()
+
+            else:
+                print("\nClosing Address Book, Thank you for joining.")
+                break
+        except:
+            print("\nNo Contacts Found, Please Add Contacts First.")
+
+main()
