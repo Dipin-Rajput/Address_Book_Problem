@@ -114,7 +114,26 @@ class AddressBook:
                 break
 
         else:
-            print("\nContact not found, please enter valid name")    
+            print("\nContact not found, please enter valid name")
+
+    # UC4
+
+    # Delete Contact Details from Address Book
+
+    def delete_contact_details(self, fullname):
+
+        counter = 0
+
+        for contact in self.addressbook:
+
+            if(fullname in contact):
+                self.addressbook.pop(counter)
+                print("\nContact Deleted Successfully.")
+                break
+            else:
+                counter += 1
+        else:
+            print("\nContact not found, please enter valid name")   
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -123,5 +142,6 @@ class AddressBook:
 contacts = AddressBook("suresh", "sharma", "#47 new zone, garden street", "chandigarh", "punjab", 14587, 123456789, "suresh123@gmail.com")
 contacts.add_contact_details()
 contacts.edit_contact_details("Suresh Sharma")
+contacts.delete_contact_details("Suresh Sharma")
 
 print(contacts.addressbook)
