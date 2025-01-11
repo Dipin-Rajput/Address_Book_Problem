@@ -13,10 +13,12 @@ print(display_message)
 
 class AddressBook:
 
+    addressbook = [] # Address Book
+
     # Constructor for Input of Data
 
     def __init__(self, firstname, lastname, address, city, state, zip, phonenumber, email):
-        
+
         self.firstname = firstname
         self.lastname = lastname
         self.address = address
@@ -28,4 +30,29 @@ class AddressBook:
 
         self.fullname = self.firstname + " " + self.lastname
 
-contacts = AddressBook("first_name", "last_name", "address", "city", "state", 00000, 123456789, "email")
+    # UC2
+
+    # Add Contacts Details to Address Book
+
+    def add_contact_details(self):
+
+        contact_details = []
+
+        contact_details.append(self.fullname.title())
+        contact_details.append(self.address.title())
+        contact_details.append(self.city.capitalize())
+        contact_details.append(self.state.capitalize())
+        contact_details.append(self.zip)
+        contact_details.append(self.phonenumber)
+        contact_details.append(self.email.lower())
+
+        self.addressbook.append(contact_details)
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Main
+
+contacts = AddressBook("suresh", "sharma", "#47 new zone, garden street", "chandigarh", "punjab", 14587, 123456789, "suresh123@gmail.com")
+contacts.add_contact_details()
+
+print(contacts.addressbook)
