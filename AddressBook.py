@@ -207,6 +207,19 @@ class AddressBook:
             else:
                 print("\nInvalid choice. Returning to main menu.")
 
+    # UC11
+
+    # Sort the Address Book alphabetically by Person name
+
+    def sort_address_book(self):
+        
+        if not self.addressbook:
+            print("\nNo contacts found to sort. Please add one first.")
+
+        else:
+            self.addressbook.sort(key=lambda contact: contact[0])  # Sort by the full name (first element of each contact)
+            print("\nAddress Book sorted alphabetically by name.")
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Main
@@ -278,6 +291,7 @@ def manage_address_book(book):
         print("------------------------- Enter 2 to edit contacts -------------------------")
         print("------------------------- Enter 3 to delete contacts -------------------------")
         print("------------------------- Enter 4 to view person by city or state -------------------------")
+        print("------------------------- Enter 5 to sort contacts alphabetically -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
 
         choice = input("Enter you choice: ")
@@ -297,6 +311,10 @@ def manage_address_book(book):
         elif(choice == "4"):
 
             book.view_persons_by_location()
+
+        elif choice == "5":
+            
+            book.sort_address_book()
 
         else:
             print("\nReturning to main menu.")
