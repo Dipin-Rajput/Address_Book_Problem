@@ -143,16 +143,12 @@ class AddressBook:
 
 # Add Multiple Person To Address Book
 
-def main():
-
-    display_message = AddressBookMain()
-    print(display_message)
-
-    contacts = AddressBook()
+def manage_address_book(book):
 
     while True:
+        print("\n------------------------- Manage Address Book -------------------------\n")
 
-        print("\n------------------------- Enter 1 to add contacts -------------------------")
+        print("------------------------- Enter 1 to add contacts -------------------------")
         print("------------------------- Enter 2 to edit contacts -------------------------")
         print("------------------------- Enter 3 to delete contacts -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
@@ -161,16 +157,65 @@ def main():
 
         if(choice == "1"):
 
-            contacts.add_contact_details()
+            book.add_contact_details()
 
         elif(choice == "2"):
 
-            contacts.edit_contact_details()
+            book.edit_contact_details()
 
         elif(choice == "3"):
 
-            contacts.delete_contact_details()
+            book.delete_contact_details()
 
+        else:
+            print("\nReturning to main menu.")
+            break
+
+# UC6
+
+# Managing Multiple Address Books
+
+def main():
+
+    display_message = AddressBookMain()
+    print(display_message)
+
+    address_books = {}
+
+    while True:
+
+        print("\n1. Create a new Address Book")
+        print("2. Select an Address Book")
+        print("Press Enter to exit\n")    
+
+        choice = input("Enter you choice: ")
+
+        if choice == "1":
+
+            book_name = input("\nEnter a unique name for the Address Book: ").title()
+
+            if book_name in address_books:
+                print(f"\nAddress Book '{book_name}' already exists.")
+            else:
+                address_books[book_name] = AddressBook()
+                print(f"\nAddress Book '{book_name}' created successfully.")
+
+        elif choice == "2":
+
+            if not address_books:
+                print("\nNo Address Books available. Please create one first.")
+            else:
+                print("\nAvailable Address Books:\n")
+
+                for name in address_books.keys():
+                    print(f"- {name}")
+
+                selected_book = input("\nEnter the name of the Address Book to select: ").title()
+
+                if selected_book in address_books:
+                    manage_address_book(address_books[selected_book])
+                else:
+                    print(f"\nAddress Book '{selected_book}' not found.")
         else:
             print("\nClosing Address Book, Thank you for joining.")
             break
