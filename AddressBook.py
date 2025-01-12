@@ -24,6 +24,17 @@ class AddressBook:
 
         fname = input("Enter your first name: ").title()
         lname = input("Enter your last name: ").title()
+        fullname = f"{fname} {lname}"
+
+        # UC7
+
+        # Check for duplicates
+
+        for contact in self.addressbook:
+            if (fullname in contact):
+                print(f"\nDuplicate entry detected! A contact with the name '{fullname}' already exists.")
+                return
+
         address = input("Enter your address: ").title()
         city = input("Enter your city: ").capitalize()
         state = input("Enter your state: ").capitalize()
@@ -153,7 +164,7 @@ def manage_address_book(book):
         print("------------------------- Enter 3 to delete contacts -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
 
-        choice = input("Enter you choice: ")
+        choice = input("Enter your choice: ")
 
         if(choice == "1"):
 
@@ -188,7 +199,7 @@ def main():
         print("2. Select an Address Book")
         print("Press Enter to exit\n")    
 
-        choice = input("Enter you choice: ")
+        choice = input("Enter your choice: ")
 
         if choice == "1":
 
