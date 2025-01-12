@@ -144,7 +144,62 @@ class AddressBook:
                     print(f"\nContact '{fullname}' Deleted Successfully.")
                     return
             
-            print("\nContact not found, please enter valid name")   
+            print("\nContact not found, please enter valid name")
+
+    # UC9
+
+    # View Person by City or State
+
+    def view_persons_by_location(self):
+
+        if not self.addressbook:
+            print("\nNo contacts found. Please add one first")
+
+        else:
+            print("\n------------------------- View Person by City or State -------------------------\n")
+
+            print("Enter 1 to search by city")
+            print("Enter 2 to search by state\n")
+
+            choice = input("Enter your choice: ")
+
+            if(choice == "1"):
+
+                print("\nAvailable Cities:")
+
+                for city in self.city_person_map.keys():
+                    print(f"- {city}")
+
+                selected_city = input("Enter the city name: ").capitalize()
+
+                if selected_city in self.city_person_map:
+
+                    print(f"\nPersons in City: {selected_city}")
+
+                    for person in self.city_person_map[selected_city]:
+                        print(f"- {person}")
+                else:
+                    print(f"\nNo persons found in City: {selected_city}.")
+
+            elif(choice == "2"):
+
+                print("\nAvailable States:")
+
+                for state in self.state_person_map.keys():
+                    print(f"- {state}")
+
+                selected_state = input("Enter the state name: ").capitalize()
+
+                if selected_state in self.state_person_map:
+
+                    print(f"\nPersons in State: {selected_state}")
+
+                    for person in self.state_person_map[selected_state]:
+                        print(f"- {person}")
+                else:
+                    print(f"\nNo persons found in State: {selected_state}.")
+            else:
+                print("\nInvalid choice. Returning to main menu.")
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -216,6 +271,7 @@ def manage_address_book(book):
         print("------------------------- Enter 1 to add contacts -------------------------")
         print("------------------------- Enter 2 to edit contacts -------------------------")
         print("------------------------- Enter 3 to delete contacts -------------------------")
+        print("------------------------- Enter 4 to view person by city or state -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
 
         choice = input("Enter you choice: ")
@@ -231,6 +287,10 @@ def manage_address_book(book):
         elif(choice == "3"):
 
             book.delete_contact_details()
+
+        elif(choice == "4"):
+
+            book.view_persons_by_location()
 
         else:
             print("\nReturning to main menu.")
@@ -284,7 +344,7 @@ def main():
                     print(f"\nAddress Book '{selected_book}' not found.")
 
         elif(choice == "3"):
-            
+
             search_person_by_location(address_books)
 
         else:
