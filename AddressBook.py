@@ -214,9 +214,8 @@ def manage_address_book(book):
         print("\n------------------------- Manage Address Book -------------------------\n")
 
         print("------------------------- Enter 1 to add contacts -------------------------")
-        print("------------------------- Enter 2 to view contacts -------------------------")
-        print("------------------------- Enter 3 to edit contacts -------------------------")
-        print("------------------------- Enter 4 to delete contacts -------------------------")
+        print("------------------------- Enter 2 to edit contacts -------------------------")
+        print("------------------------- Enter 3 to delete contacts -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
 
         choice = input("Enter you choice: ")
@@ -227,13 +226,9 @@ def manage_address_book(book):
 
         elif(choice == "2"):
 
-            book.view_contact_details()
-
-        elif(choice == "3"):
-
             book.edit_contact_details()
 
-        elif(choice == "4"):
+        elif(choice == "3"):
 
             book.delete_contact_details()
 
@@ -289,6 +284,7 @@ def main():
                     print(f"\nAddress Book '{selected_book}' not found.")
 
         elif(choice == "3"):
+            
             search_person_by_location(address_books)
 
         else:
