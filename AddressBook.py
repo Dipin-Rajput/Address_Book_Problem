@@ -150,6 +150,60 @@ class AddressBook:
 
 # Main
 
+# UC8
+
+# Search Persons with City and State
+
+def search_person_by_location(address_books):
+
+    if not address_books:
+        print("\nNo Address Books available. Please create one first.")
+
+    else:
+        print("\n------------------------- Search Person by City or State -------------------------\n")
+
+        print("Enter 1 to search by city")
+        print("Enter 2 to search by state\n")
+
+        search_type = input("Enter your choice: ")
+
+        if(search_type == "1"):
+
+            location = input("\nEnter the city name: ").capitalize()
+            search_key = "City"
+
+        elif search_type == "2":
+
+            location = input("\nEnter the state name: ").capitalize()
+            search_key = "State"
+
+        else:
+            print("\nInvalid choice. Returning to main menu.")
+            return
+
+        print(f"\nSearching for persons in {search_key}: {location}...\n")
+
+        found = False
+
+        for book_name, address_book in address_books.items():
+            for contact in address_book.addressbook: # It is used to access addressbook[] list of the address_book object.
+                
+                if(location in contact):
+                    if not found:
+                        print("Matching Contacts:")
+                    found = True
+                    print(f"\nAddress Book: {book_name}")
+                    print("Name:", contact[0])
+                    print("Address:", contact[1])
+                    print("City:", contact[2])
+                    print("State:", contact[3])
+                    print("Zip:", contact[4])
+                    print("Phone number:", contact[5])
+                    print("Email:", contact[6])
+
+        if not found:
+            print(f"\nNo persons found in {search_key}: {location}.")
+
 # UC5
 
 # Add Multiple Person To Address Book
@@ -160,11 +214,12 @@ def manage_address_book(book):
         print("\n------------------------- Manage Address Book -------------------------\n")
 
         print("------------------------- Enter 1 to add contacts -------------------------")
-        print("------------------------- Enter 2 to edit contacts -------------------------")
-        print("------------------------- Enter 3 to delete contacts -------------------------")
+        print("------------------------- Enter 2 to view contacts -------------------------")
+        print("------------------------- Enter 3 to edit contacts -------------------------")
+        print("------------------------- Enter 4 to delete contacts -------------------------")
         print("------------------------- Press Enter to exit -------------------------\n")
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter you choice: ")
 
         if(choice == "1"):
 
@@ -172,9 +227,13 @@ def manage_address_book(book):
 
         elif(choice == "2"):
 
-            book.edit_contact_details()
+            book.view_contact_details()
 
         elif(choice == "3"):
+
+            book.edit_contact_details()
+
+        elif(choice == "4"):
 
             book.delete_contact_details()
 
@@ -197,11 +256,12 @@ def main():
 
         print("\n1. Create a new Address Book")
         print("2. Select an Address Book")
+        print("3. Search Person by City or State")
         print("Press Enter to exit\n")    
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter you choice: ")
 
-        if choice == "1":
+        if(choice == "1"):
 
             book_name = input("\nEnter a unique name for the Address Book: ").title()
 
@@ -211,7 +271,7 @@ def main():
                 address_books[book_name] = AddressBook()
                 print(f"\nAddress Book '{book_name}' created successfully.")
 
-        elif choice == "2":
+        elif(choice == "2"):
 
             if not address_books:
                 print("\nNo Address Books available. Please create one first.")
@@ -227,6 +287,10 @@ def main():
                     manage_address_book(address_books[selected_book])
                 else:
                     print(f"\nAddress Book '{selected_book}' not found.")
+
+        elif(choice == "3"):
+            search_person_by_location(address_books)
+
         else:
             print("\nClosing Address Book, Thank you for joining.")
             break
