@@ -165,36 +165,42 @@ class AddressBook:
 
             if(choice == "1"):
 
-                print("\nAvailable Cities:")
+                print("\nAvailable Cities:\n")
 
                 for city in self.city_person_map.keys():
                     print(f"- {city}")
 
-                selected_city = input("Enter the city name: ").capitalize()
+                selected_city = input("\nEnter the city name: ").capitalize()
 
                 if selected_city in self.city_person_map:
 
-                    print(f"\nPersons in City: {selected_city}")
+                    person_in_city = self.city_person_map[selected_city]
 
-                    for person in self.city_person_map[selected_city]:
+                    print(f"\nTotal number of person found in {selected_city}: {len(person_in_city)}") # UC10
+                    print(f"\nPersons in City: {selected_city}\n")
+
+                    for person in person_in_city:
                         print(f"- {person}")
                 else:
                     print(f"\nNo persons found in City: {selected_city}.")
 
             elif(choice == "2"):
 
-                print("\nAvailable States:")
+                print("\nAvailable States:\n")
 
                 for state in self.state_person_map.keys():
                     print(f"- {state}")
 
-                selected_state = input("Enter the state name: ").capitalize()
+                selected_state = input("\nEnter the state name: ").capitalize()
 
                 if selected_state in self.state_person_map:
 
-                    print(f"\nPersons in State: {selected_state}")
+                    person_in_state = self.state_person_map[selected_state]
 
-                    for person in self.state_person_map[selected_state]:
+                    print(f"\nTotal number of person found in {selected_state}: {len(person_in_state)}") # UC10
+                    print(f"\nPersons in State: {selected_state}\n")
+
+                    for person in person_in_state:
                         print(f"- {person}")
                 else:
                     print(f"\nNo persons found in State: {selected_state}.")
