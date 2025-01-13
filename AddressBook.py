@@ -217,8 +217,36 @@ class AddressBook:
             print("\nNo contacts found to sort. Please add one first.")
 
         else:
-            self.addressbook.sort(key=lambda contact: contact[0])  # Sort by the full name (first element of each contact)
-            print("\nAddress Book sorted alphabetically by name.")
+            print("\n------------------------- Sort Address Book -------------------------\n")
+
+            print("1. Sort by Name")
+            print("2. Sort by City")
+            print("3. Sort by State")
+            print("4. Sort by Zip")
+            print("Press Enter to Exit")
+
+            choice = input("\nEnter your choice: ")
+
+            match choice:
+
+                case "1":
+                    self.addressbook.sort(key=lambda contact: contact[0])  # Sort by the full name (first element of each contact)
+                    print("\nAddress Book sorted alphabetically by name.")
+
+                case "2":
+                    self.addressbook.sort(key=lambda contact: contact[2]) # UC12
+                    print("\nAddress Book sorted alphabetically by city name") # Sort by city
+
+                case "3":
+                    self.addressbook.sort(key=lambda contact: contact[3]) # UC12
+                    print("\nAddress Book sorted alphabetically by state name") # Sort by state
+
+                case "4":
+                    self.addressbook.sort(key=lambda contact: contact[4]) # UC12
+                    print("\nAddress Book sorted by zip code") # Sort by zip
+
+                case _:
+                    print("\nReturning to Main menu.")
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
